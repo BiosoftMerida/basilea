@@ -112,6 +112,8 @@ gem 'rename'
 #gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 #heroku
-gem 'rails_12factor', group: :production
+group :production do
+  gem 'rails_12factor', group: :production
+end
 
 gem 'unicorn'

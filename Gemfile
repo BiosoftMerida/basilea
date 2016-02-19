@@ -95,7 +95,6 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 
 gem 'dentaku'
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 gem 'descriptive_statistics', '~> 2.4.0',  :require => 'descriptive_statistics/safe'
 

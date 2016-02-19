@@ -10,4 +10,3 @@ Gemfile.lock
 
 
 app/uploaders/img_doc_uploader.rb
-Gemfile

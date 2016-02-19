@@ -109,7 +109,7 @@ gem 'activerecord-postgis-adapter'
 
 gem 'rename'
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+#gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 #heroku
 gem 'rails_12factor', group: :production

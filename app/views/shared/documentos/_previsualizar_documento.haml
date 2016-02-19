@@ -1,0 +1,26 @@
+.col-sm-3
+  .thumbnail.popUp
+    .file
+      -if documento.pdf?
+        %a{'data-toggle'=>"modal" ,'data-target'=>"#showPdfModal",
+           'data-document' => documento.doc.url}
+          .icon
+            %i{class:'fa fa-file'}
+      -else
+        = link_to image_tag(documento.doc.url, size: '200x150'), documento.doc.url, rel: 'lightbox', "data-title" => documento.documentos_requisitos_por_vista.documento_requisito.descripcion
+    .caption
+      %h3
+        =documento.documentos_requisitos_por_vista.documento_requisito.nombre.humanize
+      %h6
+        %strong Nombre:
+        =documento.nombre_documento
+      %h6
+        %strong Obligatorio:
+        =documento.documentos_requisitos_por_vista.documento_requisito.obligatorio ? 'Si':'No'
+    .po-content.hidden
+      .po-title
+        %strong Descripcion:
+      .po-body
+        %p.text-justify
+          %strong
+            =documento.documentos_requisitos_por_vista.documento_requisito.descripcion.gsub(/:\z/,'')

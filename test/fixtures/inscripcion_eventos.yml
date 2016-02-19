@@ -1,0 +1,24 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fecha: 2016-02-12
+  nro_asiento: MyString
+  fecha_pago: 2016-02-12
+  nro_pago: MyString
+  monto: 9.99
+  aceptado: false
+  fecha_aceptado: 2016-02-12
+  contacto: 
+  evento: 
+
+two:
+  fecha: 2016-02-12
+  nro_asiento: MyString
+  fecha_pago: 2016-02-12
+  nro_pago: MyString
+  monto: 9.99
+  aceptado: false
+  fecha_aceptado: 2016-02-12
+  contacto: 
+  evento: 

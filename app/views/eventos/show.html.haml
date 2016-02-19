@@ -1,0 +1,109 @@
+= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-pagelines
+      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      -#\- Cuencas
+    %ol.breadcrumb
+      %li
+        -#= link_to 'Inicio', root_url
+      %li
+        -#= link_to 'Cuencas', unidad_ordenacion_bloque_ordenacions_path
+      %li.active
+        %strong
+          -#Datos de la Cuenca
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            evento
+        .ibox-content
+          .row
+            .col-sm-5
+              %table.table.table-striped.table-bordered.table-condensed
+                %tbody
+
+                  %tr
+                    %td.text-right
+                      %strong Nombre:
+                    %td
+                      = @evento.nombre
+
+                  %tr
+                    %td.text-right
+                      %strong Descripcion:
+                    %td
+                      = @evento.descripcion
+
+                  %tr
+                    %td.text-right
+                      %strong Fecha inicio:
+                    %td
+                      = @evento.fecha_inicio
+
+                  %tr
+                    %td.text-right
+                      %strong Fecha fin:
+                    %td
+                      = @evento.fecha_fin
+
+                  %tr
+                    %td.text-right
+                      %strong Tlf contacto:
+                    %td
+                      = @evento.tlf_contacto
+
+                  %tr
+                    %td.text-right
+                      %strong Email contacto:
+                    %td
+                      = @evento.email_contacto
+
+                  %tr
+                    %td.text-right
+                      %strong Cupos:
+                    %td
+                      = @evento.cupos
+
+                  %tr
+                    %td.text-right
+                      %strong Lugar:
+                    %td
+                      = @evento.lugar
+
+                  %tr
+                    %td.text-right
+                      %strong Horario:
+                    %td
+                      = @evento.horario
+
+                  %tr
+                    %td.text-right
+                      %strong Precio:
+                    %td
+                      = @evento.precio
+
+                  %tr
+                    %td.text-right
+                      %strong Servicios:
+                    %td
+                      = @evento.servicios
+
+                  %tr
+                    %td.text-right
+                      %strong Mensaje invitacion:
+                    %td
+                      = @evento.mensaje_invitacion
+
+          .row
+            .col-sm-3
+              = link_to eventos_path, class: 'btn btn-default' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3
+              = link_to edit_evento_path(@evento), class: 'btn btn-primary' do
+                Editar
+                %i.fa.fa-edit

@@ -1,0 +1,57 @@
+= provide(:title, "Censo Forestal")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-expand
+      Censo Forestal
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li.active
+        %strong
+          Reporte de la Masa Forestal x Categorías Diamétricas x Expecie
+.wrapper.wrapper-content.animated.fadeInRight
+%div{ 'ng-app' => 'mf_cd' }
+  %div{ ng_controller: 'mf_cd_ctlr'}
+    - if current_user.unidad_manejo.nil?
+      .ibox.float-e-margins
+        .ibox-title
+          %h2
+            No existe una Unidad de Producción Anual seleccionada
+    - else
+      .row.form-horizontal#form_cd_especie
+        .col-md-8
+          .form-group
+            = label_tag :subcuenca, class: 'col-sm-4 control-label' do
+              Unidad de Producción Anual:
+            .col-sm-4
+              = text_field_tag :subcuenca, current_user.unidad_manejo.nombre ,  class: 'form-control', readonly: true
+        .col-md-4
+          .form-group
+            = label_tag :bloque_manejo, class: 'col-sm-4 control-label' do
+              Bloque de Aprovechamiento:
+            .col-sm-8
+              = select_tag  :bloque_manejo_id, options_for_select(@bloques.collect { |p| [p.codigo, p.id]}), {include_blank: 'Todos los Bloques', class: 'form-control'}
+        .col-md-4
+          .form-group
+            = label_tag :variable_mf, class: 'col-sm-8 control-label text-left' do
+              Variable de Masa Forestal:
+            .col-sm-6.text-left
+              - [ 'Número de Arboles', 'Area Basal', 'Volumen' ].each do |variable_mf|
+                = radio_button_tag( :variable_mf, variable_mf)
+                = variable_mf.humanize
+                %br/
+      .row
+        .col-sm-2.col-sm-offset-5
+          %a.btn.btn-primary.btn-block{ ng_click: 'procesarConsulta()' }
+            Procesar
+      %br
+      %div{ ng_show: "mostrar_procesando" }
+        .row
+          .col-sm-2.col-sm-offset-5.text-center
+            %h2
+              Procesando
+              %br
+              %i.fa.fa-refresh.fa-spin.fa-2x
+      %div{ ng_show: "mostrar_resultados" }
+        = render 'table_mf_cd_especie'

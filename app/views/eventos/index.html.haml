@@ -1,0 +1,72 @@
+= provide(:title, 'Listar Eventos')
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      Eventos
+      %span
+        %i.fa.fa-building
+
+.wrapper.wrapper-content.animated.fadeInRight
+  - if @eventos.empty?
+    - if can? :create, Evento
+      .row
+        .col-md-12.col-md-offset-0
+          %ul.text-muted.leyenda
+            %li.text-justify
+              Puede registrar un Eventp haciendo click en
+              %span.amarillo
+                Nuevo Evento
+    .ibox-content.text-center
+      %h3.font-bold No hay Eventos Registrados
+      - if can? :create, Evento
+        =link_to  'Nuevo Evento',new_evento_path ,  class: 'btn btn-primary pull-center'
+  -else
+    .row
+      .col-md-12.col-md-offset-0
+        .ibox.float-e-margins
+          .ibox-content
+            .col-sm-3
+              - if can? :create, Evento
+                = link_to new_evento_path, class: 'btn btn-primary btn-block' do
+                  Nuevo Evento
+                  %i.fa.fa-plus
+            %br
+            %br
+            .row
+              .col-md-12
+                .table-responsive
+                  %table.table.table-striped.table-bordered.table-hover.datatable-table
+                    %thead
+                      %tr
+                      %th Nombre
+                      %th Fecha inicio
+                      %th Fecha fin
+                      %th Tlf contacto
+                      %th Email contacto
+                      %th Cupos
+                      %th Lugar
+                      %th Precio
+                      %th.text-center Acciones
+                    %tbody
+                      - @eventos.each do |evento|
+                        %tr
+                          %td= evento.nombre
+                          %td= evento.fecha_inicio
+                          %td= evento.fecha_fin
+                          %td= evento.tlf_contacto
+                          %td= evento.email_contacto
+                          %td= evento.cupos
+                          %td= evento.lugar
+                          %td= evento.precio
+                          %td.text-center
+                            - if can? :view, Evento
+                              = link_to evento do
+                                %i.fa.fa-search
+                            - if can? :update, Evento
+                              = link_to  edit_evento_path(evento) do
+                                %i.fa.fa-pencil-square-o
+                            - if (can? :destroy, Evento) && evento.safe_to_delete
+                              = link_to  evento, method: :delete, data: { confirm: '¿Seguro que desea Eliminar el Evento?' } do
+                                %i.fa.fa-trash-o
+
+

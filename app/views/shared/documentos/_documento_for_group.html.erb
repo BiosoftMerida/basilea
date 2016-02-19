@@ -1,0 +1,32 @@
+<%if index_group %4 == 0%>
+    <div class="row">
+    <div class="col-sm-12">
+<%end %>
+
+
+    <div class="col-sm-3">
+      <div class="thumbnail popUp">
+        <div class="file">
+          <% if documento.pdf? %>
+              <a data-document="<%= documento.doc.url %>" data-target="#showPdfModal" data-toggle="modal">
+                <div class="icon">
+                  <i class="fa fa-file"></i>
+                </div>
+              </a>
+          <% else %>
+              <%= link_to image_tag(documento.doc.url, size: '100x100'), documento.doc.url, rel: 'lightbox', "data-lightbox" =>documento_requisito.nombre %>
+          <% end %>
+        </div>
+        <h6>
+          <strong>Nombre:</strong>
+          <%= documento.nombre_documento %>
+        </h6>
+      </div>
+    </div>
+
+
+<%if index_group == histogram[index_histogram]-1%>
+    </div>
+    </div>
+<%end %>
+

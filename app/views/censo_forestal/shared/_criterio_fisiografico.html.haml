@@ -1,0 +1,23 @@
+.row
+  .col-md-12
+    %h3
+      Criterio Fisiográfico
+.row.form-horizontal
+  .col-sm-4
+    .form-group
+      = label_tag :gran_paisaje, class: 'col-sm-4 control-label' do
+        Gran Paisaje:
+      .col-sm-8
+        = select :gran_paisaje, :gran_paisaje,  options_from_collection_for_select(@gran_paisajes, :id, :nombre), {include_blank: 'Todos los Gran Paisajes'}, {class: 'form-control', id: 'gran_paisaje_select'}
+  .col-sm-4
+    .form-group
+      = label_tag :paisaje, class: 'col-sm-4 control-label' do
+        Paisaje:
+      .col-sm-8
+        = select :paisaje, :paisaje,  options_from_collection_for_select(@paisajes, :id, :nombre), {include_blank: 'Todos los Paisajes'}, {class: 'form-control', id: 'paisaje_select'}
+  .col-sm-4
+    .form-group
+      = label_tag :sub_paisaje, class: 'col-sm-4 control-label' do
+        Sub Paisaje:
+      .col-sm-8
+        = select :sub_paisaje, :sub_paisaje,  options_from_collection_for_select(@sub_paisajes, :id, :nombre), {include_blank: 'Todos los Sub Paisajes'}, {class: 'form-control', id: 'sub_paisaje_select'}

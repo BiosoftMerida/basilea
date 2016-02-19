@@ -1,0 +1,41 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-cogs
+      Asignación de UPA (Subcuenca)
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        Asignación de UPA (Subcuenca)
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-md-12.col-sm-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            Asignación de UPA (Subcuenca)
+            %i.fa.fa-leaf
+        .ibox-content
+          .row
+            .col-md-12
+              .form-horizontal
+                .form-group
+                  = label_tag :cuenca, class: 'col-sm-2 control-label' do
+                    Bloque de Ordenación (Cuenca):
+                  .col-sm-10
+                    = collection_select :bo, :bo, BloqueOrdenacion.valid_cuencas(current_user.empresa_forestal_id), :id, :nombre,
+                     { include_blank: 'Seleccione una Cuenca', selected: (current_user.unidad_manejo.bloque_ordenacion.id rescue nil) || nil},
+                     data: { dynamic_selectable_url: dynamic_select_dynamic_subcuencas_path(':bloque_ordenacion_id'),dynamic_selectable_target: '#settings_subcuenca' },
+                     class: 'form-control', id: "settings_cuenca"
+                .form-group
+                  = label_tag :subcuenca, class: 'col-sm-2 control-label' do
+                    UPA (Subcuenca):
+                  .col-sm-10
+                    = collection_select nil, :id , current_user.unidad_manejo_id.present? ? UnidadManejo.where(bloque_ordenacion_id: current_user.unidad_manejo_id) : [],  :id, :nombre, {include_blank: 'Seleccione una Subcuenca' , selected: (current_user.unidad_manejo.id rescue nil) || nil},
+                     class: 'form-control', id: 'settings_subcuenca'
+                .form-group
+                  .col-sm-3.col-sm-offset-9
+                    %a.btn.btn-primary.btn-block#guardar-subcuenca-usuario
+                      Guardar
+                      %i.fa.fa-floppy-o

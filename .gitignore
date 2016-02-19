@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+/public/EmpresaForestal-FILES-SIMAPRO/
+/log/*.log
+/tmp
+/.idea/*.*
+/.idea
+spring/*.pid
+db/schema.rb
+Gemfile.lock
+
+
+app/uploaders/img_doc_uploader.rb
+Gemfile

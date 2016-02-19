@@ -1,0 +1,58 @@
+= provide(:title, 'Visualizar Institución')
+.row
+  .col-md-12.col-md-offset-0
+    .ibox.float-e-margins
+      .ibox-title
+        %h3
+          Institución
+          %span
+            %i.fa.fa-building
+      .ibox-content
+        .col-lg-12
+          %h3
+            Datos
+        %table.table.table-striped.table-bordered.table-condensed
+          %thead
+            %tr
+              %th
+                Nombre
+              %th
+                Nombre Abreviado
+              %th
+                RIF
+              %th
+                Direccion
+              %th
+                Teléfono
+            %tbody
+              %tr
+                %td
+                  #{@empresa.nombre}
+                %td
+                  #{@empresa.abreviado}
+                %td
+                  #{@empresa.rif}
+                %td
+                  #{@empresa.direccion_fiscal}
+                %td
+                  #{@empresa.telefono}
+
+= render 'shared/documentos/modelo_documentos', model: @empresa,nombre_vista_param: :registro_empresa
+
+.row
+  .col-md-12
+    .ibox.float-e-margins
+      .ibox-content
+        .row
+          .col-sm-2
+            = link_to 'Listar Instituciones',
+            empresas_path,
+            class: "btn btn-info"
+          .col-sm-3.pull-right
+            = link_to 'Editar Institución',
+            edit_empresa_path(@empresa),
+            class: "btn btn-success"
+
+%br
+%br
+%br

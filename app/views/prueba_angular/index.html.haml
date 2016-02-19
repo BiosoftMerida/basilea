@@ -1,0 +1,9 @@
+= provide(:title, "Censo Forestal")
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_censo
+%div{ 'ng-app' => 'Hello' }
+  %div{  ng_controller: 'HelloCntl as vm'}
+    Escriba su Nombre:
+    %input{ type: 'text', ng_model: 'name', value: 'nombre' }
+    %hr
+    Hola {{name}}
+

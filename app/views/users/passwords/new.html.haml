@@ -1,0 +1,15 @@
+.loginColumns.animated.fadeInDown
+  .row
+    .col-md-6.text-center
+      %br
+      %br
+      %h3.small-logo-name SIMAPRO
+    .col-md-6
+      .ibox-content
+        %h2 ¿Olvido su Contraseña?
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'm-t' }) do |f|
+          = devise_error_messages!
+          .form-group
+            = f.email_field :email, autofocus: true, placeholder: 'Correo Electronico', class:'form-control', required: ''
+          = f.submit "Recuperar Contraseña", class: 'btn btn-primary block full-width m-b'
+          = render "users/shared/links"

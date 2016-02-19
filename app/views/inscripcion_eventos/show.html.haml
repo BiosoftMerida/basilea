@@ -1,0 +1,91 @@
+= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-pagelines
+      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      -#\- Cuencas
+    %ol.breadcrumb
+      %li
+        -#= link_to 'Inicio', root_url
+      %li
+        -#= link_to 'Cuencas', unidad_ordenacion_bloque_ordenacions_path
+      %li.active
+        %strong
+          -#Datos de la Cuenca
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            inscripcion_evento
+        .ibox-content
+          .row
+            .col-sm-5
+              %table.table.table-striped.table-bordered.table-condensed
+                %tbody
+
+                  %tr
+                    %td.text-right
+                      %strong Fecha:
+                    %td
+                      = @inscripcion_evento.fecha
+
+                  %tr
+                    %td.text-right
+                      %strong Nro asiento:
+                    %td
+                      = @inscripcion_evento.nro_asiento
+
+                  %tr
+                    %td.text-right
+                      %strong Fecha pago:
+                    %td
+                      = @inscripcion_evento.fecha_pago
+
+                  %tr
+                    %td.text-right
+                      %strong Nro pago:
+                    %td
+                      = @inscripcion_evento.nro_pago
+
+                  %tr
+                    %td.text-right
+                      %strong Monto:
+                    %td
+                      = @inscripcion_evento.monto
+
+                  %tr
+                    %td.text-right
+                      %strong Aceptado:
+                    %td
+                      = @inscripcion_evento.aceptado
+
+                  %tr
+                    %td.text-right
+                      %strong Fecha aceptado:
+                    %td
+                      = @inscripcion_evento.fecha_aceptado
+
+                  %tr
+                    %td.text-right
+                      %strong Contacto:
+                    %td
+                      = @inscripcion_evento.contacto
+
+                  %tr
+                    %td.text-right
+                      %strong Evento:
+                    %td
+                      = @inscripcion_evento.evento
+
+          .row
+            .col-sm-3
+              = link_to inscripcion_eventos_path, class: 'btn btn-default' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3
+              = link_to edit_inscripcion_evento_path(@inscripcion_evento), class: 'btn btn-primary' do
+                Editar
+                %i.fa.fa-edit

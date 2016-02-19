@@ -1,0 +1,12 @@
+- if object.errors.any?
+  #error_explanation
+    .alert.alert-danger.alert-dismissable.alerts-fix
+      %h3 No se puede guardar #{model}:
+      %p
+        - object.errors.each do |name, message|
+          &nbsp;
+          &nbsp;
+          \- &nbsp;
+          = message
+          %br
+%br

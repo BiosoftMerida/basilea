@@ -1,0 +1,43 @@
+-lista_no_paginado = model.documentos_vista(nombre_vista_param)
+-if not lista_no_paginado.empty?
+  .row
+    .col-md-12.col-md-offset-0
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            Documentos
+            %small
+              (No Páginados)
+        .ibox-content
+          .row
+            .col-md-12
+              - lista_no_paginado.each_with_index  do |documento,index|
+                - if (index) % 4 == 0
+                  .row.col-sm-12
+                = render 'shared/documentos/previsualizar_documento', documento: documento
+
+- new_group = nil
+- index_group = nil
+- name_group_documento_requisito = nil
+- list = model.documentos_paginados(nombre_vista_param)
+- histogram      = list.group_by{ |v| v.documentos_requisitos_por_vista_id }.map{ |k, v| v.size }
+- index_histogram= 0
+- list.each_with_index do |documento,index|
+
+  - documento_requisito =  documento.documentos_requisitos_por_vista.documento_requisito
+  -if index == 0
+    - new_group = true
+    - name_group_documento_requisito = documento_requisito.nombre
+    - index_group = 0
+
+  - if index > 0 and not name_group_documento_requisito == documento_requisito.nombre
+    - new_group = true
+    - index_group = 0
+    - index_histogram+=1
+    - name_group_documento_requisito = documento_requisito.nombre
+
+  = render 'shared/documentos/previsualizar_paginas',histogram:histogram,index_histogram:index_histogram,index:index, len: list.length, documento: documento, documento_requisito: documento_requisito, new_group: new_group,index_group:index_group
+  -new_group   = false
+  -index_group += 1
+
+=render 'shared/documentos/show_modal_pdf'

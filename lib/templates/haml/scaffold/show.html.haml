@@ -1,0 +1,43 @@
+= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-pagelines
+      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      -#\- Cuencas
+    %ol.breadcrumb
+      %li
+        -#= link_to 'Inicio', root_url
+      %li
+        -#= link_to 'Cuencas', unidad_ordenacion_bloque_ordenacions_path
+      %li.active
+        %strong
+          -#Datos de la Cuenca
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            <%= singular_table_name %>
+        .ibox-content
+          .row
+            .col-sm-5
+              %table.table.table-striped.table-bordered.table-condensed
+                %tbody
+                <%- for attribute in attributes -%>
+                  %tr
+                    %td.text-right
+                      %strong <%= attribute.human_name %>:
+                    %td
+                      = @<%= singular_table_name %>.<%= attribute.name %>
+                <%- end -%>
+          .row
+            .col-sm-3
+              = link_to <%= index_helper %>_path, class: 'btn btn-default' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3
+              = link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary' do
+                Editar
+                %i.fa.fa-edit

@@ -1,0 +1,32 @@
+//= require bootstrap-datetimepicker
+//= require jquery-ui/jquery-ui.css
+//= require jquery.appendGrid/jquery.appendGrid-1.5.2.css
+
+.tabla-arboles-censo {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.appendGrid {
+  font-family: open sans, lucida grande, lucida sans unicode, helvetica, arial, sans-serif;
+}
+
+.arboles-error-placement {
+  min-height: 100px;
+  border: 1px dotted #7b7e80;
+}
+
+.nro_cuadricula {}
+.fi {}
+.bi {}
+.especie {}
+.nro_arbol {}
+.dap_cap {}
+.altura_fuste {}
+
+.center-table
+{
+  margin: 0 auto !important;
+  float: none !important;
+}
+

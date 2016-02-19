@@ -1,0 +1,2 @@
+module PruebaAngularHelper
+end

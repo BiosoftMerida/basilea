@@ -1,0 +1,45 @@
+.row
+  .col-md-12
+    .ibox.float-e-margins
+      .ibox-title
+        %h3
+          = documento_requisito.descripcion
+          -if documento_requisito.obligatorio
+            %span.fa.fa-asterisk.red
+          %small
+            \ -
+            Por páginas o documento completo.
+      .ibox-content
+        .row.form-horizontal
+          .col-sm-10.col-sm-offset-2
+            = form_for Documento.new,
+                       url: jquery_file_uploads_path(modelo_id: modelo.id,
+                                                     modelo_type: modelo.class,
+                                                     documentos_requisitos_por_vista_id: DocumentosRequisitosPorVista.find_by_tupla(vista,documento_requisito.nombre).id),
+                                                     html: {multipart: true, id:'fileupload_'+documento_requisito.nombre+'_'+modelo.id.to_s+'_'+modelo.class.to_s,class: 'fileupload-generic', enctype:"multipart/form-data"} do |f|
+              .row
+                .span16.fileupload-buttonbar
+                  .progressbar.fileupload-progressbar.nofade
+                    %div{:style => "width:0%;"}
+                  %span.btn.btn-success.fileinput-button
+                    %span
+                      Añadir Página
+                      %span.fa.fa-file-o
+                    = f.file_field :file, multiple: true
+                  %button.btn.btn-primary.start{:type => "submit"}
+                    Iniciar Carga
+                    %span.fa.fa-upload
+                  %button.btn.btn-warning.cancel{:type => "reset"}
+                    Cancelar Carga
+                    %span.fa.fa-times
+                  %button.btn.btn-danger.delete{:type => "button"}
+                    Borrar Selección
+                    %span.fa.fa-trash
+                  %input.toggle{:type => "checkbox"}/
+                  %br/
+                  .row
+                    .span16
+                      %table.table.table-striped.zebra-striped
+                        %tbody.files
+                      #loading
+              = render 'shared/documentos/jquery_scripts'

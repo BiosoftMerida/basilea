@@ -1,0 +1,69 @@
+/*
+ *   INSPINIA - Responsive Admin Theme
+ *   Copyright 2014 Webapplayers.com
+ */
+
+// Google Fonts
+//@import url("//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
+
+// Bootstrap
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// Variables, Mixins
+@import "base/variables";
+@import "base/mixins";
+
+// INSPINIA Theme Elements
+@import "base/typography";
+@import "base/navigation";
+@import "base/top_navigation";
+@import "base/buttons";
+@import "base/badgets_labels";
+@import "base/elements";
+@import "base/sidebar";
+@import "base/base";
+@import "base/pages";
+
+// RTL Support
+@import "base/rtl";
+
+// For demo only - config box style
+@import "base/theme-config";
+
+// INSPINIA Skins
+@import "base/skins";
+
+// Media query style
+@import "base/media";
+
+// Custom style
+// Your custom style to override base style
+@import "base/custom";
+
+.red{
+  color: #ff0000;
+  font-size: 7px;
+}
+
+.close{
+  font-size: 15px !important;
+  opacity: 0.5 !important;
+}
+
+.alinear_radio{
+  margin-left: 0px !important;
+}
+.codigo_input{
+  font-size: 13px;
+  width: 9% !important;
+}
+.area_input{
+  font-size: 13px;
+  width: 12% !important;
+}
+.parcela_input{
+  font-size: 13px;
+  width: 9% !important;
+}
+

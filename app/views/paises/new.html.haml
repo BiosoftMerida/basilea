@@ -1,0 +1,38 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      Nuevo Pais
+      %span
+        %i.fa.fa-globe
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        = link_to 'Paises Registrados', paises_path
+      %li
+        %strong
+          Nuevo Pais
+
+.wrapper.wrapper-content
+  .row.animated.fadeInRight
+    .col-md-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            Registro de Nuevo País
+        .ibox-content
+          = form_for(@pais, url: {action: :create}, html: {class:"form-horizontal m-t-md", id: "form_registro_pais"}) do |f|
+            = render 'shared/error_messages', object: f.object, model: 'Pais'
+            .form-group
+              = f.label :nombre, "Nombre del País: ", class: 'col-sm-2 control-label'
+              .col-sm-10
+                = f.text_field :nombre, autofocus: true, class: 'form-control'
+            .form-group
+              = f.label :idioma_id, "Idioma: ", class: 'col-sm-2 control-label'
+              .col-sm-10
+                = f.collection_select(:idioma_id, Idioma.all, :id, :nombre,{},class:'form-control')
+            .form-group
+              .col-sm-3.col-sm-offset-9
+                = f.button class: 'btn btn-primary btn-responsive btn-block', data: {disable_with: 'Guardar'} do
+                  Guardar
+                  %i.fa.fa-floppy-o

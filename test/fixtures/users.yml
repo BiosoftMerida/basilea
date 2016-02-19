@@ -1,0 +1,11 @@
+fzerpa:
+  id: 1
+  name: Francisco Zerpa
+  username: fzerpa
+  encrypted_password: <%= BCrypt::Password.create("12345678", cost: 4) %>
+  email: fzerpap@gmail.com
+  role_id: 1
+  empresa_forestal_id: 1
+  unidad_manejo_id: 1
+
+

@@ -1,0 +1,88 @@
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            Preinscripción Enviada Satisfactoriamente
+        .ibox-content
+          .row
+            .col-sm-5
+              %table.table.table-striped.table-bordered.table-condensed
+                %tbody
+
+                  %tr
+                    %td.text-right
+                      %strong Nombres:
+                    %td
+                      = @contacto.nombres
+
+                  %tr
+                    %td.text-right
+                      %strong Apellidos:
+                    %td
+                      = @contacto.apellidos
+
+                  %tr
+                    %td.text-right
+                      %strong Doc identidad:
+                    %td
+                      = @contacto.doc_identidad
+
+                  %tr
+                    %td.text-right
+                      %strong Email:
+                    %td
+                      = @contacto.email
+
+                  %tr
+                    %td.text-right
+                      %strong Telefono:
+                    %td
+                      = @contacto.telefono
+
+                  %tr
+                    %td.text-right
+                      %strong Iglesia:
+                    %td
+                      = @contacto.iglesia
+                  %tr
+                    %td.text-right
+                      %strong Recomendado por:
+                    %td
+                      = @contacto.recomendado_por
+
+                  %tr
+                    %td.text-right
+                      %strong País:
+                    %td
+                      = @contacto.pais.nombre
+
+                  %tr
+                    %td.text-right
+                      %strong Estado:
+                    %td
+                      = @contacto.estado.nombre
+
+                  %tr
+                    %td.text-right
+                      %strong Profesion:
+                    %td
+                      = @contacto.profesion.nombre
+
+                  %tr
+                    %td.text-right
+                      %strong Ministerio:
+                    %td
+                      = @contacto.ministerio.nombre
+
+
+          .row
+            .col-sm-3
+              = link_to contactos_path, class: 'btn btn-default' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3
+              = link_to edit_contacto_path(@contacto), class: 'btn btn-primary' do
+                Editar
+                %i.fa.fa-edit

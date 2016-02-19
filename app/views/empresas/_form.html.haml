@@ -1,0 +1,71 @@
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12
+      = form_for(@empresa,html:{ id: 'form_empresa'}) do |f|
+        .row
+          .col-md-12
+            .ibox.float-e-margins
+              .ibox-title
+                %h3
+                  Datos
+              .ibox-content
+                .row
+                  = render 'shared/error_messages', object: f.object, model: 'Institución'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :nombre , class: 'col-sm-4 control-label' do
+                        Nombre:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :nombre,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :abreviado , class: 'col-sm-4 control-label' do
+                        Nombre Abreviado:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :abreviado,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :rif , class: 'col-sm-4 control-label' do
+                        RIF:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :rif,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :direccion_fiscal , class: 'col-sm-4 control-label' do
+                        Dirección:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :direccion_fiscal,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :telefono , class: 'col-sm-4 control-label' do
+                        Teléfono:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :telefono,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :pais_id, class: 'col-sm-4 control-label' do
+                        País:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.collection_select(:pais_id, Pais.all.order(:nombre), :id,:nombre,
+                        {selected:  f.object.pais_id.nil? ? Pais.find_by(nombre: :Venezuela).id : @empresa.pais_id },
+                         class:'form-control col-sm-1')
+
+          .row
+            .col-sm-12
+              .ibox.float-e-margins
+                .ibox-content
+                  .row
+                    .col-sm-2
+                      = link_to empresas_path, class: 'btn btn-success' do
+                        %i.fa.fa-arrow-left
+                        Regresar
+                    .col-sm-3.col-sm-offset-7
+                      = f.button class: 'btn btn-primary btn-responsive btn-block', data: {disable_with: 'Guardar'} do
+                        Guardar
+                        %i.fa.fa-floppy-o

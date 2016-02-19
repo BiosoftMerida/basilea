@@ -1,0 +1,54 @@
+-#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-pagelines
+      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      -#\- Cuencas
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li.active
+        %strong
+          -#Cuencas
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  .row
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-content
+          .row
+            .col-md-12
+              = form_for :aprobar_preinscritos, url: aprobar_preinscritos_path, method: :post, id: 'aprobar_preinscritos' do |f|
+                %table.table.table-striped.table-bordered.table-hover.datatable-table
+                  %thead
+                    %tr
+                      %th Nombres
+                      %th Apellidos
+                      %th Doc Identidad
+                      %th Email
+                      %th Teléfono
+                      %th Iglesia
+                      %th Estado
+                      %th Profesión
+                      %th Ministerio
+                      %th Fecha
+                      %th Aprobar
+                  %tbody
+                    - @inscripcion_eventos.each do |inscripcion|
+                      %tr
+                        %td= inscripcion.contacto.nombres
+                        %td= inscripcion.contacto.apellidos
+                        %td= inscripcion.contacto.doc_identidad
+                        %td= inscripcion.contacto.email
+                        %td= inscripcion.contacto.telefono
+                        %td= inscripcion.contacto.iglesia
+                        %td= inscripcion.contacto.estado.nombre
+                        %td= inscripcion.contacto.profesion.nombre
+                        %td= inscripcion.contacto.ministerio.nombre
+                        %td= inscripcion.fecha
+                        %td
+                          = hidden_field_tag '[aprobar_inscripcion][][id_inscripcion]',inscripcion.id
+                          = check_box_tag '[aprobar_inscripcion][][aceptado]'
+                .row
+                  .col-md-2.col-md-offset-8
+                    %button#aprobar_preinscritos.btn.btn-success{:type => "submit"} Aprobar Preinscritos

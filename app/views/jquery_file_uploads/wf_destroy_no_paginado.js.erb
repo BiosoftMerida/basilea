@@ -1,0 +1,5 @@
+$(":input[id*='documentos_attributes'][value='<%= @documento.id %>'][name*='[documentos_attributes]']").remove();
+$('#button_change_<%= @documento.id %>').html('Subir Documento');
+$('#file_name_change_<%= @documento.id %>').html('');
+$('#icon_change_<%= @documento.id %>').remove();
+$('#button_remove_<%= @documento.id %>').remove();

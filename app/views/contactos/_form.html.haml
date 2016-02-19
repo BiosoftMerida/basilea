@@ -1,0 +1,119 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-users
+      \- Preinscripción a la Escuela de Influencia y Transformación
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12
+      = form_for(@contacto,html:{ id: 'form_contacto'}) do |f|
+        .row
+          .col-md-12
+            .ibox.float-e-margins
+              .ibox-title
+                %h3
+                  Por favor, ingrese sus datos personales para la preinscripción
+              .ibox-content
+                .row
+                  = render 'shared/error_messages', object: f.object, model: 'Contacto'
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :nombres , class: 'col-sm-4 control-label' do
+                        Nombres:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.text_field :nombres,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :apellidos , class: 'col-sm-4 control-label' do
+                        Apellidos:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.text_field :apellidos,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :doc_identidad, class: 'col-sm-4 control-label' do
+                        Documento de Identidad (Cédula o Pasaporte):
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.text_field :doc_identidad,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :email, class: 'col-sm-4 control-label' do
+                        Correo Electrónico:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.text_field :email,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :telefono , class: 'col-sm-4 control-label' do
+                        Teléfono:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.text_field :telefono,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :iglesia , class: 'col-sm-4 control-label' do
+                        Iglesia a la que Pertence:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.text_field :iglesia,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :recomendado_por , class: 'col-sm-4 control-label' do
+                        Recomendado o Invitado por:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.text_field :recomendado_por,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :pais_id, class: 'col-sm-4 control-label' do
+                        País:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.collection_select(:pais_id, Pais.all.order(:nombre), :id,:nombre,
+                        {selected:  f.object.pais_id.nil? ? Pais.find_by(nombre: :Venezuela).id : @contacto.pais_id },
+                         class:'form-control col-sm-1', id:'select_pais')
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :estado_id, class: 'col-sm-4 control-label' do
+                        Estado:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.collection_select(:estado_id, Estado.all.order(:nombre), :id,:nombre,
+                        {selected:  f.object.estado_id.nil? ? nil : @contacto.estado_id,
+                        include_blank: 'Seleccione el Estado'},class:'form-control col-sm-1', id:'select_estado')
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :profesion_id, class: 'col-sm-4 control-label' do
+                        Profesión:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.collection_select(:profesion_id, Profesion.all.order(:nombre), :id,:nombre,
+                          {selected:  f.object.profesion_id.nil? ? nil : @contacto.profesion_id,
+                          include_blank: 'Seleccione una Profesión'},class:'form-control col-sm-1')
+                  .row.col-sm-12.col-sm-offset-1
+                    .form-group.col-sm-10
+                      = f.label :ministerio_id, class: 'col-sm-4 control-label' do
+                        Ministerio:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-6
+                        = f.collection_select(:ministerio_id, Ministerio.all.order(:nombre), :id,:nombre,
+                          {selected:  f.object.ministerio_id.nil? ? nil : @contacto.ministerio_id,
+                          include_blank: 'Seleccione un Ministerio'},class:'form-control col-sm-1')
+                      = f.hidden_field :empresa_id, :value => Empresa.find_by(abreviado: "Basilea").id
+
+          .row
+            .col-sm-12
+              .ibox.float-e-margins
+                .ibox-content
+                  .row
+                    .col-sm-2
+                    .col-sm-3.col-sm-offset-7
+                      = f.button class: 'btn btn-primary btn-responsive btn-block', data: {disable_with: 'Enviar Preinscripción'} do
+                        Enviar Preinscripción
+                        %i.fa.fa-floppy-o
+
+
+
+

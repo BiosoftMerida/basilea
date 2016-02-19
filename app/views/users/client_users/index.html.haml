@@ -1,0 +1,58 @@
+= render 'title'
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-users
+      = current_user.empresa.nombre
+      \- Gestión de Usuarios de la Institución
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        Gestión de Usuarios de la Institución
+
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-content
+          .row
+            .col-sm-3
+              = link_to new_client_user_path, class: 'btn btn-primary ' do
+                Nuevo Usuario de la Institución
+                %i.fa.fa-plus
+          %br
+          .row
+            .col-md-12
+              .table-responsive
+                %table.table.table-striped.table-bordered.table-hover
+                  %thead
+                    %tr
+                      %th Avatar
+                      %th Username
+                      %th Email
+                      %th Nombre
+                      %th Teléfono Celular
+                      %th Institución
+                      %th Rol
+                      %th Acciones
+                  %tbody
+                    - @users.each do |user|
+                      %tr
+                        %td.text-center= image_tag user.avatar.url || 'tree.png', class: 'img-circle', height: 50
+                        %td= user.username
+                        %td= user.email
+                        %td= user.name
+                        %td= user.cellphone
+                        %td= user.empresa.nombre rescue nil
+                        %td= user.role.name_type
+                        %td
+                          = link_to edit_client_user_path(user) do
+                            %i.fa.fa-pencil-square-o
+                            Editar
+                          &nbsp;
+                          &nbsp;
+                          &nbsp;
+                          = link_to client_user_path(user), data: { confirm: "Seguro que desea eliminar al usuario #{user.username}?" }, method: :delete do
+                            %i.fa.fa-trash
+                            Eliminar

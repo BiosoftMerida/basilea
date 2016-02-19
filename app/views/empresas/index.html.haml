@@ -1,0 +1,66 @@
+= provide(:title, 'Listar Empresas Forestales')
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      Instituciones
+      %span
+        %i.fa.fa-building
+
+.wrapper.wrapper-content.animated.fadeInRight
+  - if @empresas.empty?
+    - if can? :create, Empresa
+      .row
+        .col-md-12.col-md-offset-0
+          %ul.text-muted.leyenda
+            %li.text-justify
+              Puede registrar una Institución haciendo click en
+              %span.amarillo
+                Nueva Institución
+    .ibox-content.text-center
+      %h3.font-bold No hay Instituciones Registradas
+      - if can? :create, Empresa
+        =link_to  'Nueva Institución',new_empresa_path ,  class: 'btn btn-primary pull-center'
+  -else
+    .row
+      .col-md-12.col-md-offset-0
+        .ibox.float-e-margins
+          .ibox-content
+            .col-sm-3
+              - if can? :create, Empresa
+                = link_to new_empresa_path, class: 'btn btn-primary btn-block' do
+                  Nueva Institución
+                  %i.fa.fa-plus
+            %br
+            %br
+            .row
+              .col-md-12
+                .table-responsive
+                  %table.table.table-striped.table-bordered.table-hover.datatable-table
+                    %thead
+                      %tr
+                        %th Nombre
+                        %th Abreviado
+                        %th RIF
+                        %th Direccion
+                        %th Teléfono
+                        %th País
+                        %th.text-center Acciones
+                    %tbody
+                      - @empresas.each do |empresa|
+                        %tr
+                          %td= empresa.nombre
+                          %td= empresa.abreviado
+                          %td= empresa.rif
+                          %td= empresa.direccion_fiscal
+                          %td= empresa.telefono
+                          %td= empresa.pais.nombre
+                          %td.text-center
+                            - if can? :view, Empresa
+                              = link_to empresa do
+                                %i.fa.fa-search
+                            - if can? :update, Empresa
+                              = link_to  edit_empresa_path(empresa) do
+                                %i.fa.fa-pencil-square-o
+                            - if (can? :destroy, Empresa) && empresa.safe_to_delete
+                              = link_to  empresa, method: :delete, data: { confirm: '¿Seguro que desea Eliminar Institución?' } do
+                                %i.fa.fa-trash-o

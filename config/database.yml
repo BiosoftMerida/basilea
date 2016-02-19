@@ -1,0 +1,17 @@
+default: &default
+  host: localhost
+  adapter: postgresql
+  username: postgres
+  password: 1234
+
+development:
+  <<: *default
+  database: basilea_development
+
+test:
+  <<: *default
+  database:  basilea_test
+#
+production:
+  <<: *default
+  database:  basilea_production

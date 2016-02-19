@@ -1,0 +1,124 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-users
+      = current_user.empresa.nombre
+      \- Eventos
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        = link_to 'Eventos Registrados', eventos_path
+      %li.active
+        %strong
+          Registro de Eventos
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12
+      = form_for(@evento,html:{ id: 'form_evento'}) do |f|
+        .row
+          .col-md-12
+            .ibox.float-e-margins
+              .ibox-title
+                %h3
+                  Datos
+              .ibox-content
+                .row
+                  = render 'shared/error_messages', object: f.object, model: 'Evento'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :nombre , class: 'col-sm-4 control-label' do
+                        Nombre:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :nombre,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :descripcion , class: 'col-sm-4 control-label' do
+                        Descripción:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_area :descripcion,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :fecha_inicio, class: 'col-sm-4 control-label' do
+                        Fecha de Inicio:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.date_select :fecha_inicio,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :fecha_fin, class: 'col-sm-4 control-label' do
+                        Fecha de Finalización:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.date_select :fecha_fin,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :email_contacto , class: 'col-sm-4 control-label' do
+                        Email de Contacto:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :email_contacto,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :tlf_contacto , class: 'col-sm-4 control-label' do
+                        Teléfono de Contacto:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :tlf_contacto,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :cupos , class: 'col-sm-4 control-label' do
+                        Cantidad de Cupos:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.number_field :cupos,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :lugar , class: 'col-sm-4 control-label' do
+                        Lugar:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :lugar,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :horario , class: 'col-sm-4 control-label' do
+                        Horario:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :horario,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :precio , class: 'col-sm-4 control-label' do
+                        Precio por Cupo:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.number_field :precio,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :servicios , class: 'col-sm-4 control-label' do
+                        Servicios que se Ofrecen:
+                      .col-sm-8
+                        = f.text_area :servicios,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :mensaje_invitacion , class: 'col-sm-4 control-label' do
+                        Mensaje de Invitación:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_area :mensaje_invitacion,class: 'form-control'
+          .row
+            .col-sm-12
+              .ibox.float-e-margins
+                .ibox-content
+                  .row
+                    .col-sm-2
+                      = link_to eventos_path, class: 'btn btn-success' do
+                        %i.fa.fa-arrow-left
+                        Regresar
+                    .col-sm-3.col-sm-offset-7
+                      = f.button class: 'btn btn-primary btn-responsive btn-block', data: {disable_with: 'Guardar'} do
+                        Guardar
+                        %i.fa.fa-floppy-o
+

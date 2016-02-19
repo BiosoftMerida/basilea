@@ -1,0 +1,33 @@
+<% content_for :javascript do %>
+    <% flash.each do |message_type , message| %>
+        <script type="text/javascript">
+
+            $(function() {
+
+              setTimeout(function() {
+                toastr.options = {
+                  closeButton: true,
+                  progressBar: true,
+                  showMethod: 'slideDown',
+                  timeOut: 10000
+                };
+                var msg = "<%= message %>";
+                <% if message_type.to_s == 'alert' || message_type.to_s == 'error '%>
+                  toastr.error(msg);
+                <% elsif message_type.to_s == 'warning' %>
+                  toastr.warning(msg);
+                <% elsif message_type.to_s == 'info' %>
+                  toastr.info(msg);
+                <% else %>
+                  toastr.success(msg);
+                <% end %>
+
+              }, 700);
+
+            });
+
+        </script>
+
+    <% end %>
+
+<% end %>

@@ -1,0 +1,42 @@
+<% if new_group and index ==0 %>
+    <div class="row">
+      <div class="col-md-12 col-md-offset-0">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h3>
+              <%= documento_requisito.descripcion %>
+              <small>
+                \- Obligatorio:
+                <%= documento_requisito.obligatorio ? 'Si':'No' %>
+              </small>
+            </h3>
+          </div>
+              <div class="ibox-content">
+<% elsif new_group%>
+
+              </div>
+              </div>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-md-offset-0">
+                  <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                      <h3>
+                        <%= documento_requisito.descripcion %>
+                        <small>
+                          \- Obligatorio:
+                          <%= documento_requisito.obligatorio ? 'Si':'No' %>
+                        </small>
+                      </h3>
+                    </div>
+                     <div class="ibox-content">
+<% end %>
+<%= render 'shared/documentos/documento_for_group',index_histogram:index_histogram, histogram:histogram, documento: documento, documento_requisito: documento_requisito,
+           index_group: index_group , close: (not (index==0))%>
+<% if index == len-1 %>
+    </div>
+    </div>
+    </div>
+    </div>
+<% end  %>

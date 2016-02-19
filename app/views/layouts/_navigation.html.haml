@@ -1,0 +1,99 @@
+%nav.navbar-default.navbar-static-side{:role => "navigation"}
+  .sidebar-collapse
+    %ul#side-menu.nav
+      %li.nav-header
+        .dropdown.profile-element
+          %span
+            = image_tag current_user.avatar.url || 'logoMiniBasilea.jpg', height: 50, class:'img-circle'
+            -#%img.img-circle{:alt => "image", :src => image_url 'profile_small.jpg'}/
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            %span.clear
+              %span.block.m-t-xs
+                %strong.font-bold
+                  = current_user.name || current_user.username
+              %span.text-muted.text-xs.block
+                = current_user.empresa.nombre rescue 'Basilea'
+                %b.caret
+          %ul.dropdown-menu.animated.fadeInRight.m-t-xs
+            %li
+              = link_to  profile_path do
+                Perfil
+            %li.divider
+            %li
+              = link_to destroy_user_session_path, method: :delete do
+                Cerrar Sesión
+        .logo-element
+          SP
+      %li{class: is_active_controller('users/profiles')}
+        = link_to profile_path do
+          %i.fa.fa-user
+          %span.nav-label Perfil
+      - if can? :index, Role
+        %li{class: is_active_controller('roles')}
+          %a{:href => ""}
+            %i.fa.fa-key
+            %span.nav-label Roles
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('roles')}"}
+            - if can? :index, Role
+              %li{class: is_active_action('index')}= link_to 'Visualizar Roles', roles_path
+            - if can? :new, Role
+              %li{class: is_active_action('new')}= link_to 'Nuevo Rol', new_role_path
+      - if can? :manage, User
+        %li{class: is_active_controller('users/registrations')}
+          %a{:href => ""}
+            %i.fa.fa-database
+            %span.nav-label Usuarios
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('users/registrations')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Usuario', users_index_path
+            %li{class: is_active_action('new_user')}= link_to 'Nuevo Usuario', users_new_path
+      - if can? :manage, Empresa
+        %li{class: is_active_controller('empresas')}
+          %a{:href => ""}
+            %i.fa.fa-building
+            %span.nav-label Instituciones
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('empresas')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Instituciones',empresas_path
+            - if can? :create, Empresa
+              %li{class: is_active_action('new')}= link_to 'Nueva Institución', new_empresa_path
+      - if can? :read, Pais
+        %li{class: is_active_controller('paises')}
+          %a{:href => ""}
+            %i.fa.fa-globe
+            %span.nav-label Paises
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('paises')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Paises',paises_path
+            - if can? :create, Pais
+              %li{class: is_active_action('new')}= link_to 'Nuevo País', new_pais_path
+      - if can? :manage, :client_users
+        %li{class: is_active_controller('users/client_users')}
+          %a{:href => ""}
+            %i.fa.fa-users
+            %span.nav-label Usuarios
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('users/registrations')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Usuario', client_users_path
+            %li{class: is_active_action('new_user')}= link_to 'Nuevo Usuario', new_client_user_path
+      - if can? :manage, Evento
+        %li{class: is_active_controller('eventos')}
+          %a{:href => ""}
+            %i.fa.fa-building
+            %span.nav-label Eventos
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('eventos')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Eventos',eventos_path
+            - if can? :create, Evento
+              %li{class: is_active_action('new')}= link_to 'Nuevo Evento', new_evento_path
+      - if can? :manage, InscripcionEvento
+        %li{class: is_active_controller('inscripcion_eventos')}
+          %a{:href => ""}
+            %i.fa.fa-building
+            %span.nav-label Inscripciones del Evento
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('inscripcion_eventos')}"}
+            %li{class: is_active_action('index')}= link_to 'Aprobar Preinscripciones',inscripcion_eventos_path
+            - if can? :wf_inscritos, InscripcionEvento
+              %li{class: is_active_action('index')}= link_to 'Ver Inscripciones'

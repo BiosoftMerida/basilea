@@ -1,0 +1,62 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-user
+      Perfil
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        Perfil
+.wrapper.wrapper-content
+  .row.animated.fadeInRight
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-content
+          .row
+            .col-md-3.text-center
+              = image_tag current_user.avatar.url || 'logoNormalBasilea.jpg', class: 'img-circle', height: 200
+            .col-md-4.col-md-offset-1
+              .table-responsive
+                %table.table.table-striped.table-bordered
+                  %thead
+                    %tr
+                      %th
+                        Datos del Usuario
+                      %th
+                  %tbody
+                    %tr
+                      %td
+                        Nombre:
+                      %td
+                        = current_user.name
+                    %tr
+                      %td
+                        Nombre de Usuario:
+                      %td
+                        = current_user.username
+                    %tr
+                      %td
+                        Email:
+                      %td
+                        = current_user.email
+                    %tr
+                      %td
+                        Teléfonos:
+                      %td
+                        = current_user.cellphone
+          .row
+            .col-sm-8.col-sm-offset-4
+              .row
+                .col-sm-3
+                  = link_to profile_edit_path, class: 'btn btn-primary btn-block' do
+                    Editar Perfil
+                    &nbsp;
+                    %i.fa.fa-edit
+                .col-sm-3
+                  = link_to edit_user_registration_path, class: 'btn btn-success btn-block' do
+                    Cambiar Contraseña
+                    &nbsp;
+                    %i.fa.fa-key
+
+

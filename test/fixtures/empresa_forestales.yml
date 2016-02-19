@@ -1,0 +1,33 @@
+enafor:
+  id: 1
+  nombre: Empresa Nacional Forestal
+  abreviado: ENAFOR
+  rif: j-3456767-1
+  direccion_fiscal: Puerto Ordaz
+  telefono: 0286-3456787
+  parcela_manejo_long: 1000
+  parcela_manejo_ancho: 20
+  parcela_inv_long: 1000
+  parcela_inv_ancho: 10
+  area_parcela_inv: 10000
+  cuadricula_inv_long: 10
+  cuadricula_inv_ancho: 10
+  area_cuadricula_inv: 100
+  pais_id: 1
+
+emoc:
+  id: 2
+  nombre: Empresa de Occidente
+  abreviado: EMOC
+  rif: j-5656767-1
+  direccion_fiscal: Puerto Ordaz
+  telefono: 0286-3456778
+  parcela_manejo_long: 1000
+  parcela_manejo_ancho: 20
+  parcela_inv_long: 1000
+  parcela_inv_ancho: 10
+  area_parcela_inv: 10000
+  cuadricula_inv_long: 10
+  cuadricula_inv_ancho: 10
+  area_cuadricula_inv: 100
+  pais_id: 1

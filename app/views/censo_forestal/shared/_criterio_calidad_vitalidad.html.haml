@@ -1,0 +1,49 @@
+.row
+  .col-md-12
+    %h3
+      Criterio Florístico
+.row.form-horizontal
+  .col-sm-4
+    .form-group
+      = label_tag :calidad, class: 'col-sm-4 control-label' do
+        Calidad de Fuste:
+      .col-sm-8
+        .calidad_fuste_criterio
+          %table.table.table-striped
+            %thead
+              %th= check_box_tag :all, true , false, id: 'checkall_cf', name: 'calidad'
+              %th Calidad
+            %tbody#tbody_calidad_checks
+              %tr
+                %td= check_box_tag :buena, 0, true, name: 'calidad'
+                %td Buena
+              %tr
+                %td= check_box_tag :regular, 1, true, name: 'calidad'
+                %td Regular
+              %tr
+                %td= check_box_tag :mala, 2, true, name: 'calidad'
+                %td Mala
+  .col-sm-4
+    .form-group
+      = label_tag :vitalidad, class: 'col-sm-4 control-label' do
+        Vitalidad de Copa:
+      .col-sm-8
+        .vitalidad_copa_criterio
+          %table.table.table-striped
+            %thead
+              %th= check_box_tag :all, true , false, id: 'checkall_vc', name: 'vitalidad'
+              %th Vitalidad
+            %tbody#tbody_vitalidad_checks
+              %tr
+                %td= check_box_tag :sano_completo, 0, true, name: 'vitalidad'
+                %td Sano completo
+              %tr
+                %td= check_box_tag :sano_incompleto, 1, true, name: 'vitalidad'
+                %td Sano incompleto
+              %tr
+                %td= check_box_tag :no_simetrico, 2, true, name: 'vitalidad'
+                %td No simétrico
+
+
+
+

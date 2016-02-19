@@ -1,0 +1,66 @@
+.row
+  .col-md-12
+    .ibox.float-e-margins
+      .ibox-content
+        .row
+          .col-lg-12
+            %div{:style => "text-align: right"}
+              %br
+                %br
+                  %button.btn.btn-success{:onClick => "$('#table_resultados').tableExport({type: 'excel', escape: 'false'});"}
+                    %i.fa.fa-file-excel-o
+                    Export Excel
+                  %button.btn.btn-success#printPdf
+                    %i.fa.fa-file-pdf-o
+                    Export PDF
+                  %br
+            .table-responsive
+              %table.table.table-striped.table-bordered.table-hover.display#table_resultados
+                %thead
+                  %th.align-center
+                    Especie
+                  %th.align-center
+                    40 - 50
+                  %th.align-center
+                    50 - 60
+                  %th.align-center
+                    60 - 70
+                  %th.align-center
+                    70 - 80
+                  %th.align-center
+                    80 - 90
+                  %th.align-center
+                    90 - 100
+                  %th.align-center
+                    100 - 110
+                  %th.align-center
+                    110 - 120
+                  %th.align-center
+                    + 120
+                  %th.align-center
+                    Total
+                %tbody#tbody_resultados
+                  %tr{ng_repeat: "(key, mf) in masa_forestal"}
+                    %td
+                      {{key | uppercase}}
+                    %td{ class: 'text-right'}
+                      {{mf[0]}}
+                    %td{ class: 'text-right'}
+                      {{mf[1]}}
+                    %td{ class: 'text-right'}
+                      {{mf[2]}}
+                    %td{ class: 'text-right'}
+                      {{mf[3]}}
+                    %td{ class: 'text-right'}
+                      {{mf[4]}}
+                    %td{ class: 'text-right'}
+                      {{mf[5]}}
+                    %td{ class: 'text-right'}
+                      {{mf[6]}}
+                    %td{ class: 'text-right'}
+                      {{mf[7]}}
+                    %td{ class: 'text-right'}
+                      {{mf[8]}}
+                    %td{ class: 'text-right'}
+                      {{mf[9]}}
+

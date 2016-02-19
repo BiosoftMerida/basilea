@@ -1,0 +1,20 @@
+-#partial para documentos NO paginados
+-indice_documento||= 0
+= model.fields_for :documentos, list_documents,child_index: indice_documento  do |documento|
+  %div{id: ""}
+    = documento.hidden_field :documentos_requisitos_por_vista_id, value: documento.object.documentos_requisitos_por_vista_id
+    .form-group.doc-feedback
+      .group
+        = documento.label documento.object.documentos_requisitos_por_vista.documento_requisito.nombre.to_sym,
+                   class: 'col-sm-2 control-label' do
+          = documento.object.documentos_requisitos_por_vista.documento_requisito.descripcion
+          - if documento.object.documentos_requisitos_por_vista.documento_requisito.obligatorio
+            %span.fa.fa-asterisk.red
+          - elsif documento.object.documentos_requisitos_por_vista.documento_requisito.almenos_uno
+            %span{class: "fa fa-asterisk #{documento.object.documentos_requisitos_por_vista.grupo_documentos_uno.icon_color}"}
+        .col-sm-10
+          = render 'shared/documentos/file_upload_generic',f: documento,
+                      field: :doc,
+                      name_file: documento.object.doc
+
+  -documento.options[:child_index] += 1

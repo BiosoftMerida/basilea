@@ -1,0 +1,30 @@
+%div{id: "#{f.object.documentos_requisitos_por_vista.documento_requisito.nombre}_field_form"}
+  .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+    .form-control{"data-trigger" => "fileinput"}
+      %i.fa.fa-upload.fileinput-exists.pull-left
+      -if name_file.present?
+        %i.fa.fa-upload.fileinput-new.pull-left{id: "icon_change_#{f.object.id}"}
+      %span.fileinput-filename{id: "file_name_change_#{f.object.id}"}
+        = name_file.present? ? name_file.to_s.split('/').last.sub(/\A\d+-/,'') : ""
+    %span.input-group-addon.btn.btn-success.btn-file
+
+      - if name_file.present?
+        %span.fileinput-exists Cambiar
+        %span.fileinput-new{id: "button_change_#{f.object.id}"} Cambiar
+      - else
+        %span.fileinput-new Subir Documento
+        %span.fileinput-exists Cambiar
+      = f.file_field field,id: "#{f.object.documentos_requisitos_por_vista.documento_requisito.nombre}_file_field"
+    -if name_file.present?
+      = link_to '',wf_destroy_no_paginado_jquery_file_upload_path(f.object), remote: true,
+        method: :delete,
+        data:{confirm: 'Seguro de borrar documento?'},
+        class:'fa fa-times input-group-addon btn btn-default fileinput-new',
+        id: "button_remove_#{f.object.id}",
+        :style => "float: none"
+    %a.fa.fa-times.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
+
+  -help||=false
+  -unless help.blank?
+    %span.help-block
+      = help.html_safe

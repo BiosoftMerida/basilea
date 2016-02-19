@@ -6,7 +6,6 @@
 /.idea
 spring/*.pid
 db/schema.rb
-Gemfile.lock
 
 
 app/uploaders/img_doc_uploader.rb

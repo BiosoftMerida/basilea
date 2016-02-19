@@ -83,7 +83,7 @@ gem 'jquery-fileupload-rails'
 gem 'remotipart', '~> 1.2'
 
 
-#gem 'rmagick', '~> 2.13.4'
+gem 'rmagick', '~> 2.13.4'
 
 gem 'cancancan', '~> 1.10'
 

@@ -27,7 +27,7 @@ class Documento < ActiveRecord::Base
 
   default_scope -> { order(created_at: :asc) }
 
-  #mount_uploader :doc, ImgDocUploader
+  mount_uploader :doc, ImgDocUploader
 
   validate :doc_not_empty
   validate :doc_size
